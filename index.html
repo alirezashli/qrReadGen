@@ -32,7 +32,9 @@
             <div id="outputMessage">No QR code detected.</div>
             <div hidden=""><b>Data:</b> <span id="outputData">Irankish qr code generator</span></div>
         </div>
-        <canvas id="canvas" height="50px" width="50px" style="width:150px !important;height:150px !important"></canvas>
+
+        <canvas id="canvas" height="100%" width="100px"></canvas>
+
     </div>
     <script type="text/javascript">
         var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -122,6 +124,8 @@
 
     <script>
         var video = document.createElement("video");
+        video.setAttribute('height', '100');
+        video.setAttribute('width', '100');
         var canvasElement = document.getElementById("canvas");
         var canvas = canvasElement.getContext("2d");
         var loadingMessage = document.getElementById("loadingMessage");
@@ -139,11 +143,17 @@
         }
 
         // Use facingMode: environment to attemt to get the front camera on phones
+        var pk = 0.2000;
         navigator.mediaDevices.getUserMedia({
             video: {
-                facingMode: "environment"
+                facingMode: "environment",
+                aspectRatio: pk
             }
         }).then(function(stream) {
+
+            const track = stream.getVideoTracks()[0];
+            const capabilities = track.getCapabilities();
+
             video.srcObject = stream;
             video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
             video.play();
@@ -156,8 +166,7 @@
                 loadingMessage.hidden = true;
                 canvasElement.hidden = false;
                 outputContainer.hidden = false;
-                video.videoHeight = 100;
-                video.videoWidth = 100;
+
                 canvasElement.height = video.videoHeight;
                 canvasElement.width = video.videoWidth;
                 canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
