@@ -156,7 +156,8 @@
                 loadingMessage.hidden = true;
                 canvasElement.hidden = false;
                 outputContainer.hidden = false;
-
+                video.videoHeight = 100;
+                video.videoWidth = 100;
                 canvasElement.height = video.videoHeight;
                 canvasElement.width = video.videoWidth;
                 canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
