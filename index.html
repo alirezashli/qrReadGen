@@ -75,7 +75,7 @@
             <br>
             <div id="loadingMessage" hidden="">⌛ Loading video...</div>
             <div id="output">
-                <div id="outputMessage">کد QR مورد نظر یافت نشد</div>
+                <!-- <div id="outputMessage">کد QR مورد نظر یافت نشد</div> -->
                 <div hidden="">
                     <img id="okImg" src="check.png" class="iconImg">
                     <img id="loadingImg" src="loading.png" class="iconImg">
@@ -190,7 +190,7 @@
                     drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
                     drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
                     drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-                    outputMessage.hidden = true;
+                    //outputMessage.hidden = true;
                     outputData.parentElement.hidden = false;
                     if (code.data.toLowerCase().includes("https://ikc.shaparak.ir")) {
                         {
@@ -205,7 +205,7 @@
                     }
 
                 } else {
-                    outputMessage.hidden = false;
+                    // outputMessage.hidden = false;
                     okImg.hidden = true;
                     loadingImg.hidden = false;
                     outputData.parentElement.hidden = true;
