@@ -75,10 +75,11 @@
             <br>
             <div id="loadingMessage" hidden="">⌛ Loading video...</div>
             <div id="output">
-                <!-- <div id="outputMessage">کد QR مورد نظر یافت نشد</div> -->
+                <div id="outputMessage">
+                    <img id="loadingImg" src="loading.png" class="iconImg"> کد QR مورد نظر یافت نشد</div>
                 <div hidden="">
                     <img id="okImg" src="check.png" class="iconImg">
-                    <img id="loadingImg" src="loading.png" class="iconImg">
+
                     <span id="outputData"></span>
                 </div>
             </div>
@@ -104,9 +105,9 @@
         var outputMessage = document.getElementById("outputMessage");
         var outputData = document.getElementById("outputData");
         var okImg = document.getElementById("okImg");
-        var loadingImg = document.getElementById("loadingImg");
+
         okImg.hidden = false;
-        loadingImg.hidden = true;
+
         var pk = 1.7777777778;
 
         function changeMode(mode) {
@@ -190,24 +191,24 @@
                     drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
                     drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
                     drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-                    //outputMessage.hidden = true;
+
                     outputData.parentElement.hidden = false;
                     if (code.data.toLowerCase().includes("https://ikc.shaparak.ir")) {
                         {
                             okImg.hidden = false;
-                            loadingImg.hidden = true;
+                            outputMessage.hidden = true;
                             outputData.innerText = "جهت ادامه عملیات لطفا منتظر بمانید";
+                            video.stop();
+                            changeMode(0);
                         }
                     } else {
                         okImg.hidden = true;
-                        loadingImg.hidden = false;
-                        outputData.innerText = "خطا در پردازش بارکد";
+
                     }
 
                 } else {
-                    // outputMessage.hidden = false;
+                    outputMessage.hidden = false;
                     okImg.hidden = true;
-                    loadingImg.hidden = false;
                     outputData.parentElement.hidden = true;
                 }
             }
