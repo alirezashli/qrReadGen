@@ -125,9 +125,12 @@
         function scanCode() {
             changeMode(2);
             navigator.mediaDevices.getUserMedia({
+                audio: false,
                 video: {
                     facingMode: "environment",
-                   aspectRatio: pk
+                    aspectRatio: pk,
+                    width: 320,
+                    height: 180
                 }
             }).then(function(stream) {
 
