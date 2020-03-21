@@ -93,7 +93,7 @@
         var outputContainer = document.getElementById("output");
         var outputMessage = document.getElementById("outputMessage");
         var outputData = document.getElementById("outputData");
-        var pk = 1.71;
+        var pk = 1.7777777778;
 
         function changeMode(mode) {
             if (mode == 0) {
@@ -127,7 +127,7 @@
             navigator.mediaDevices.getUserMedia({
                 video: {
                     facingMode: "environment",
-                   
+                   aspectRatio: pk
                 }
             }).then(function(stream) {
 
