@@ -73,6 +73,7 @@
         <div id="contentContainer" class="contentContainer">
             <input type="button" value="Generate QR" id="qrcodeBtn" onclick="makeCode()">
             <input type="button" value="Read QR" id="readQr" onclick="scanCode()">
+            <input type="button" value="share" id="share-photo">
             <br>
             <div id="loadingMessage" hidden="">⌛ Loading video...</div>
             <div id="output">
@@ -91,6 +92,17 @@
         </div>
     </div>
     <script type="text/javascript">
+        document.getElementById('share-photo').addEventListener("click", function() {
+            if (navigator.share) {
+                navigator.share({
+                        title: 'web.dev',
+                        text: 'Check out web.dev.',
+                        url: 'https://web.dev/',
+                    })
+                    .then(() => console.log('Successful share'))
+                    .catch((error) => console.log('Error sharing', error));
+            }
+        }, false);
         changeMode(0);
         var mobileNo = "09359653223";
         var qrGenContent = "myTest.com";
