@@ -1,0 +1,8 @@
+{
+	"name" : "MyTestPwa",
+	"short_name" : "mtp",
+	"description" : "همینجوری الکی",
+	"start_url" : "https://alirezashli.github.io/qrReadGen/",
+	"display" : "standalone",
+	"orientation" : "portrait-primary"
+}
