@@ -97,9 +97,12 @@
             if (s && s != undefined) {
                 if (navigator.share) {
                     navigator.share({
-                            title: 'web.dev',
-                            text: 'Check out web.dev.',
-                            url: s.src,
+                            title: 'qr code from test',
+                            text: 'qr code from test text',
+                            image: {
+                                source: s.src,
+                                mimeType: 'image/jpg'
+                            }
                         })
                         .then(() => console.log('Successful share'))
                         .catch((error) => console.log('Error sharing', error));
