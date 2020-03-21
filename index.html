@@ -12,126 +12,133 @@
     <script type="text/javascript" src="qr-scanner-worker.min.js"></script> -->
 
     <script type="text/javascript" src="jsQR.js"></script>
+    <style>
+        .contentContainer {
+            text-align: center !important;
+        }
+        
+        .infoContainer {
+            margin: 20px !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 300px !important;
+            min-width: 300px !important;
+            max-height: 300px !important;
+            min-height: 300px !important;
+            display: inline-block;
+        }
+        
+        .infoContainer img {
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 300px !important;
+            min-width: 300px !important;
+            max-height: 300px !important;
+            min-height: 300px !important;
+            display: inline-block;
+        }
+        
+        .infoContainer canvas {
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 300px !important;
+            min-width: 300px !important;
+            max-height: 300px !important;
+            min-height: 300px !important;
+            display: inline-block;
+        }
+        
+        .bodyContainer {
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 300px !important;
+            max-height: 300px !important;
+            min-width: 100% !important;
+            min-height: 100% !important;
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body style="text-align: center;">
     <h1> test for gernerat and read qr code</h1>
-    <div>
-        input:
-        <input id="text" type="text" value="Irankish qr code generator" style="width:300px" />
-        <input type="button" value="Generate QR" id="qrcodeBtn" onclick="makeCode()">
-        <input type="button" value="Read QR" id="readQr" onclick="ReadQr()">
-        <br />
-        <!-- <span id="cam-has-camera"></span>
-        <video muted playsinline id="qr-video"></video> -->
-        <div id="qrcode" style="width:100px; height:100px; margin-top:15px;display: inline-block;"></div>
-        <br>
-        <!-- <video id="preview" style="width:50%;top: 100px; margin-top: 20px;"></video> -->
-        <div id="loadingMessage" hidden="">⌛ Loading video...</div>
-        <div id="output">
-            <div id="outputMessage">No QR code detected.</div>
-            <div hidden=""><b>Data:</b> <span id="outputData">Irankish qr code generator</span></div>
+    <div class="bodyContainer">
+        <div id="contentContainer" class="contentContainer">
+            <input type="button" value="Generate QR" id="qrcodeBtn" onclick="makeCode()">
+            <input type="button" value="Read QR" id="readQr" onclick="scanCode()">
+            <br>
+            <div id="loadingMessage" hidden="">⌛ Loading video...</div>
+            <div id="output">
+                <div id="outputMessage">No QR code detected.</div>
+                <div hidden=""><b>Data:</b> <span id="outputData">Irankish qr code generator</span></div>
+            </div>
         </div>
-
-        <canvas id="canvas" height="100px" width="100px"></canvas>
-
+        <div id="canvasContainer" class="infoContainer">
+            <div id="qrcode" name="qrcode"></div>
+            <canvas id="canvas" name="canvas"></canvas>
+        </div>
     </div>
     <script type="text/javascript">
+        changeMode(0);
+        var mobileNo = "09359653223";
+        var qrGenContent = "myTest.com";
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             width: 100,
             height: 100
         });
-
-        function makeCode() {
-            var elText = document.getElementById("text");
-
-            if (!elText.value) {
-                alert("Input a text");
-                elText.focus();
-                return;
-            }
-
-            qrcode.makeCode(elText.value);
-        }
-
-
-        // function ReadQr() {
-        //     const QrScanner = new e();
-        //     //QrScanner.WORKER_PATH = 'qr-scanner-worker.min.js';
-        //     const video = document.getElementById('qr-video');
-        //     const camHasCamera = document.getElementById('cam-has-camera');
-        //     const camQrResult = document.getElementById('cam-qr-result');
-        //     const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
-        //     const fileSelector = document.getElementById('file-selector');
-        //     const fileQrResult = document.getElementById('file-qr-result');
-
-        //     function setResult(label, result) {
-        //         label.textContent = result;
-        //         camQrResultTimestamp.textContent = new Date().toString();
-        //         label.style.color = 'teal';
-        //         clearTimeout(label.highlightTimeout);
-        //         label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
-        //     }
-        //     QrScanner.hasCamera().then(hasCamera => camHasCamera.textContent = hasCamera);
-
-        //     const scanner = new QrScanner(video, result => setResult(camQrResult, result));
-        //     scanner.start();
-
-        //     document.getElementById('inversion-mode-select').addEventListener('change', event => {
-        //         scanner.setInversionMode(event.target.value);
-        //     });
-
-
-        //     return;
-
-
-        //     // let opts = {
-        //     //     continuous: true,
-        //     // };
-        //     // let scanner = new Instascan.Scanner(opts);
-        //     // scanner.addListener('scan', function(content) {
-        //     //     console.log(content);
-        //     // });
-        //     // Instascan.Camera.getCameras().then(function(cameras) {
-
-        //     //     let scanner = new Instascan.Scanner({
-        //     //         video: document.getElementById('preview')
-        //     //     });
-        //     //     if (cameras.length > 0) {
-        //     //         scanner.start(cameras[0]);
-        //     //     } else {
-        //     //         console.error('No cameras found.');
-        //     //     }
-
-
-        //     // }).catch(function(e) {
-        //     //     console.error(e);
-        //     // });
-
-        // }
-        //makeCode();
-
-        // $("#text").
-        // on("blur", function() {
-        //     makeCode();
-        // }).
-        // on("keydown", function(e) {
-        //     if (e.keyCode == 13) {
-        //         makeCode();
-        //     }
-        // });
-    </script>
-
-    <script>
         var video = document.createElement("video");
-        video.setAttribute('height', '100');
-        video.setAttribute('width', '100');
         var canvasElement = document.getElementById("canvas");
         var canvas = canvasElement.getContext("2d");
         var loadingMessage = document.getElementById("loadingMessage");
         var outputContainer = document.getElementById("output");
         var outputMessage = document.getElementById("outputMessage");
         var outputData = document.getElementById("outputData");
+
+        function changeMode(mode) {
+            if (mode == 0) {
+                document.getElementById("qrcode").style.display = "none";
+                document.getElementById("canvas").style.display = "none";
+
+            } else if (mode == 1) {
+                document.getElementById("qrcode").style.display = "inline-block";
+                document.getElementById("canvas").style.display = "none";
+
+            } else {
+                document.getElementById("qrcode").style.display = "none";
+                document.getElementById("canvas").style.display = "inline-block";
+            }
+        }
+
+        function makeCode() {
+            var elText = qrGenContent;
+
+            if (!elText.length > 0) {
+                alert("Input a text");
+                elText.focus();
+                return;
+            }
+            changeMode(1);
+            qrcode.makeCode(elText);
+        }
+
+        function scanCode() {
+            changeMode(2);
+            navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: "environment",
+                    aspectRatio: pk
+                }
+            }).then(function(stream) {
+
+                const track = stream.getVideoTracks()[0];
+                const capabilities = track.getCapabilities();
+
+                video.srcObject = stream;
+                video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+                video.play();
+                requestAnimationFrame(tick);
+            });
+        }
 
         function drawLine(begin, end, color) {
             canvas.beginPath();
@@ -143,22 +150,10 @@
         }
 
         // Use facingMode: environment to attemt to get the front camera on phones
-        var pk = 0.2000;
-        navigator.mediaDevices.getUserMedia({
-            video: {
-                facingMode: "environment",
-                aspectRatio: pk
-            }
-        }).then(function(stream) {
+        var pk = 1.71;
 
-            const track = stream.getVideoTracks()[0];
-            const capabilities = track.getCapabilities();
 
-            video.srcObject = stream;
-            video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-            video.play();
-            requestAnimationFrame(tick);
-        });
+
 
         function tick() {
             loadingMessage.innerText = "⌛ Loading video..."
@@ -166,9 +161,6 @@
                 loadingMessage.hidden = true;
                 canvasElement.hidden = false;
                 outputContainer.hidden = false;
-
-                canvasElement.height = video.videoHeight;
-                canvasElement.width = video.videoWidth;
                 canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
                 var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
                 var code = jsQR(imageData.data, imageData.width, imageData.height, {
