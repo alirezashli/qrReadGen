@@ -92,15 +92,18 @@
         </div>
     </div>
     <script type="text/javascript">
-        document.getElementById('share-photo').addEventListener("click", function() {
-            if (navigator.share) {
-                navigator.share({
-                        title: 'web.dev',
-                        text: 'Check out web.dev.',
-                        url: 'https://web.dev/',
-                    })
-                    .then(() => console.log('Successful share'))
-                    .catch((error) => console.log('Error sharing', error));
+        var imgObj = document.getElementById('share-photo').addEventListener("click", function() {
+            var s = qrcodeObj.getElementsByTagName("img")[0];
+            if (s && s != undefined) {
+                if (navigator.share) {
+                    navigator.share({
+                            title: 'web.dev',
+                            text: 'Check out web.dev.',
+                            url: s.src,
+                        })
+                        .then(() => console.log('Successful share'))
+                        .catch((error) => console.log('Error sharing', error));
+                }
             }
         }, false);
         changeMode(0);
@@ -118,7 +121,7 @@
         var outputMessage = document.getElementById("outputMessage");
         var outputData = document.getElementById("outputData");
         var okImg = document.getElementById("okImg");
-
+        var qrcodeObj = document.getElementById("qrcode");
         okImg.hidden = false;
 
         var pk = 1.7777777778;
@@ -148,6 +151,7 @@
             }
             changeMode(1);
             qrcode.makeCode(elText);
+
         }
 
         function scanCode() {
