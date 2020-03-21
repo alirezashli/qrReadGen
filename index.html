@@ -56,6 +56,12 @@
             min-width: 100% !important;
             min-height: 100% !important;
             display: inline-block;
+            direction: rtl;
+        }
+        
+        .iconImg {
+            width: 20px;
+            height: 20px;
         }
     </style>
 </head>
@@ -69,8 +75,12 @@
             <br>
             <div id="loadingMessage" hidden="">⌛ Loading video...</div>
             <div id="output">
-                <div id="outputMessage">No QR code detected.</div>
-                <div hidden=""><b>Data:</b> <span id="outputData">Irankish qr code generator</span></div>
+                <div id="outputMessage">کد QR مورد نظر یافت نشد</div>
+                <div hidden="">
+                    <img id="okImg" src="check.png" class="iconImg">
+                    <img id="loadingImg" src="loading.png" class="iconImg">
+                    <span id="outputData"></span>
+                </div>
             </div>
         </div>
         <div id="canvasContainer" class="infoContainer">
@@ -93,6 +103,10 @@
         var outputContainer = document.getElementById("output");
         var outputMessage = document.getElementById("outputMessage");
         var outputData = document.getElementById("outputData");
+        var okImg = document.getElementById("okImg");
+        var loadingImg = document.getElementById("loadingImg");
+        okImg.hidden = false;
+        loadingImg.hidden = true;
         var pk = 1.7777777778;
 
         function changeMode(mode) {
@@ -149,7 +163,7 @@
             canvas.moveTo(begin.x, begin.y);
             canvas.lineTo(end.x, end.y);
             canvas.lineWidth = 2;
-           
+
             canvas.strokeStyle = color;
             canvas.stroke();
         }
@@ -178,10 +192,22 @@
                     drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
                     outputMessage.hidden = true;
                     outputData.parentElement.hidden = false;
-                    outputData.innerText = code.data;
+                    if (code.data.toLowerCase().includes("https://ikc.shaparak.ir")) {
+                        {
+                            okImg.hidden = false;
+                            loadingImg.hidden = true;
+                            outputData.innerText = "جهت ادامه عملیات لطفا منتظر بمانید";
+                        }
+                    } else {
+                        okImg.hidden = true;
+                        loadingImg.hidden = false;
+                        outputData.innerText = "خطا در پردازش بارکد";
+                    }
 
                 } else {
                     outputMessage.hidden = false;
+                    okImg.hidden = true;
+                    loadingImg.hidden = false;
                     outputData.parentElement.hidden = true;
                 }
             }
