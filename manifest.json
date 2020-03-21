@@ -3,7 +3,7 @@
 	"short_name" : "mtp",
 	"description" : "همینجوری الکی",
 	"start_url" : "https://alirezashli.github.io/qrReadGen/",
-	"display" : "standalone",
+	"display" : "fullscreen",
 	"orientation" : "portrait-primary",
 	"url" : "https://alirezashli.github.io/qrReadGen/",
 	"lang" : "",
