@@ -99,10 +99,10 @@
                     navigator.share({
                             title: 'qr code from test',
                             text: 'qr code from test text',
-                            image: {
-                                source: s.src,
-                                mimeType: 'image/jpg'
-                            }
+                            blob: s.src,
+
+                            mimeType: 'image/jpg'
+
                         })
                         .then(() => console.log('Successful share'))
                         .catch((error) => console.log('Error sharing', error));
