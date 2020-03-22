@@ -93,21 +93,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        var imgObj = document.getElementById('share-photo').addEventListener("click", function() {
-            var s = qrcodeObj.getElementsByTagName("img")[0];
-            if (s && s != undefined) {
-                if (navigator.share) {
-                    navigator.share({
-                            title: 'qr code from test',
-                            text: 'qr code from test text',
-                           file:
-
-                        })
-                        .then(() => console.log('Successful share'))
-                        .catch((error) => console.log('Error sharing', error));
-                }
-            }
-        }, false);
+  
         changeMode(0);
         var mobileNo = "09359653223";
         var qrGenContent = "myTest.com";
