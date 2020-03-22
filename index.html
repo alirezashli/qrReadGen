@@ -100,10 +100,7 @@
                     navigator.share({
                             title: 'qr code from test',
                             text: 'qr code from test text',
-                           image: {
-                            source: s,
-                            mimeType: 'image/jpg'
-                        }
+                           file:
 
                         })
                         .then(() => console.log('Successful share'))
@@ -220,8 +217,10 @@
                             okImg.hidden = false;
                             outputMessage.hidden = true;
                             outputData.innerText = "جهت ادامه عملیات لطفا منتظر بمانید";
-                            video.stop();
-                            changeMode(0);
+                            xhr.open("POST", code.data, true);
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+xhr.send();
+                           
                         }
                     } else {
                         okImg.hidden = true;
