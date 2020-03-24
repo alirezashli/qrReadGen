@@ -14,21 +14,24 @@
 </head>
 
 <body style="text-align: center;">
-    <div id="qrcode" name="qrcode" style="display: inline-block;"></div>
-    <img id="img1" name="img1" style="display: inline-block;" />
+    <!-- <div id="qrcode" name="qrcode" style="display: inline-block;"></div>
+    <img id="img1" name="img1" style="display: inline-block;" /> -->
     <script type="text/javascript">
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            width: 200,
-            height: 200
-        });
+        // var qrcode = new QRCode(document.getElementById("qrcode"), {
+        //     width: 200,
+        //     height: 200
+        // });
         var bizId = $("meta[name='dpImg']").attr("content");
-        var img1 = document.getElementById("img1");
-        
-        img1.src = bizId;
-
-        function makeCode() {
-            qrcode.makeCode("www.google.com");
-        }
+        var items = bizId.split(",");
+        //document.write(btoa(items[1]));
+        //var img1 = document.getElementById("img1");
+        //img1.src = bizId;
+        var image = new Image();
+        image.src = bizId;
+        document.body.appendChild(image);
+        // function makeCode() {
+        //     qrcode.makeCode("www.google.com");
+        // }
         // makeCode();
     </script>
 </body>
