@@ -1,0 +1,18 @@
+<html>
+<head>
+
+</head>
+<body
+<input type="text" id="input1">
+<br>
+<label id="lbl1">
+<script>
+  var input1 = document.getElementById("input1");
+   var lbl1 = document.getElementById("lbl1");
+input1.addEventListener("keydown", function (e) {
+        console.log(e);
+        lbl1.textContent=e.which;
+    });
+</script>
+</body>
+</html>
