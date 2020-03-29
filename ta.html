@@ -13,7 +13,7 @@ input1.addEventListener("keydown", function (e) {
   console.log(e);
   if(e.key=="Unidentified" && e.keyCode==229)
   {
-      lbl1.textContent= e.target.value.charCodeAt(e.target.value.length-1);
+      lbl1.textContent=input1.value.charCodeAt(e.target.value.length-1);
   
   }
         else
