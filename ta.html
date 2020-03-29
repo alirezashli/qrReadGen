@@ -10,7 +10,13 @@
   var input1 = document.getElementById("input1");
    var lbl1 = document.getElementById("lbl1");
 input1.addEventListener("keydown", function (e) {
-        console.log(e);
+  console.log(e);
+  if(e.key=="Unidentified" && e.keyCode==229)
+  {
+      lbl.textContent= e.target.value.charCodeAt(e.target.value.length-1);
+    return ; 
+  }
+        
         lbl1.textContent=e.which;
     });
   input1.addEventListener("keypress", function (e) {
