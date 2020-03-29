@@ -14,9 +14,9 @@ input1.addEventListener("keydown", function (e) {
   if(e.key=="Unidentified" && e.keyCode==229)
   {
       lbl1.textContent= e.target.value.charCodeAt(e.target.value.length-1);
-    return ; 
+  
   }
-        
+        else
         lbl1.textContent=e.which;
     });
   input1.addEventListener("keypress", function (e) {
